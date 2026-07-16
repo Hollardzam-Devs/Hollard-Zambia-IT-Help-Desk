@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{40abe1ce-a8e2-4f5e-ad84-3de8fd89e8a9}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab verticallayout="true" id="{C60A3665-68AE-4C9E-9932-060D89255F8B}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{C844AC4B-36A7-405A-B450-46CE93AF6723}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{D87FEE3E-7BFD-4C63-BE7F-A8A924EC0690}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="dg_fullname" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="dg_FullName" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{D9E2348A-C4B9-46BB-9BEC-7BCC4A230DFD}">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{aaf970d4-4acf-423e-b045-15c6cf34a233}">
+                        <labels>
+                          <label description="Staff Email" languagecode="1033" />
+                        </labels>
+                        <control id="dg_staffemail" classid="{4273edbd-ac1d-40d3-9fb2-095c621b552d}" datafieldname="dg_staffemail" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c25b50dd-108d-4d82-9e44-e008b2745001}">
+                        <labels>
+                          <label description="Role" languagecode="1033" />
+                        </labels>
+                        <control id="dg_role" classid="{3ef39988-22bb-4f0b-bbbe-64b5a3748aee}" datafieldname="dg_role" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

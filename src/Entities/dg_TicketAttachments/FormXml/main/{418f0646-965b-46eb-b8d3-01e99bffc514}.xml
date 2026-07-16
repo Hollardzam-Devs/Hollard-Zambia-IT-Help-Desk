@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{418f0646-965b-46eb-b8d3-01e99bffc514}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab verticallayout="true" id="{0A041DEB-BE05-41EF-9088-16FD3836F3BF}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{C8BE5449-6BD3-47BC-9C46-8976700A710A}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{63E362DC-F60F-4FD5-A304-33442A913E73}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="dg_newcolumn" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="dg_Newcolumn" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{D885CCA4-E2D0-459C-AA92-2FE19AC34CA1}">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b0901cef-57ca-4471-8c26-51d821e59dba}">
+                        <labels>
+                          <label description="File Name" languagecode="1033" />
+                        </labels>
+                        <control id="dg_filename" classid="{4273edbd-ac1d-40d3-9fb2-095c621b552d}" datafieldname="dg_filename" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6665337b-c08d-4820-8341-7ba3290109d2}">
+                        <labels>
+                          <label description="Sharepoint URL" languagecode="1033" />
+                        </labels>
+                        <control id="dg_sharepointurl" classid="{4273edbd-ac1d-40d3-9fb2-095c621b552d}" datafieldname="dg_sharepointurl" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

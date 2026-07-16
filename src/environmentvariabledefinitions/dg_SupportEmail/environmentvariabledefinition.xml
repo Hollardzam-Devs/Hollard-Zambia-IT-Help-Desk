@@ -1,0 +1,13 @@
+<environmentvariabledefinition schemaname="dg_SupportEmail">
+  <description default="Notification Sender">
+    <label description="Notification Sender" languagecode="1033" />
+  </description>
+  <displayname default="SupportEmail">
+    <label description="SupportEmail" languagecode="1033" />
+  </displayname>
+  <introducedversion>1.0.0.0</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <secretstore>0</secretstore>
+  <type>100000000</type>
+</environmentvariabledefinition>
