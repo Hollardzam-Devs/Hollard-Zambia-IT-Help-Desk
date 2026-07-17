@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CanvasApp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name>dg_hollardzambiaithelpdesk_cb5f8</Name>
+  <AppVersion>2026-07-16T10:44:37Z</AppVersion>
+  <Status>Ready</Status>
+  <CreatedByClientVersion>3.26065.8.0</CreatedByClientVersion>
+  <MinClientVersion>3.26065.8.0</MinClientVersion>
+  <Tags>{"primaryDeviceWidth":"1366","primaryDeviceHeight":"768","supportsPortrait":"true","supportsLandscape":"true","primaryFormFactor":"Tablet","showStatusBar":"false","publisherVersion":"3.26065.8","minimumRequiredApiVersion":"2.2.0","hasComponent":"false","hasUnlockedComponent":"false","isUnifiedRootApp":"false","m365CopilotSettingValue":"0"}</Tags>
+  <IsCdsUpgraded>0</IsCdsUpgraded>
+  <GalleryItemId xsi:nil="true"></GalleryItemId>
+  <BackgroundColor>RGBA(0,176,240,1)</BackgroundColor>
+  <DisplayName>Hollard Zambia IT Help Desk</DisplayName>
+  <Description xsi:nil="true"></Description>
+  <CommitMessage xsi:nil="true"></CommitMessage>
+  <Publisher xsi:nil="true"></Publisher>
+  <AuthorizationReferences>[]</AuthorizationReferences>
+  <ConnectionReferences>{}</ConnectionReferences>
+  <DatabaseReferences>{"default.cds":{"databaseDetails":{"referenceType":"NotSpecified","environmentName":"default.cds","overrideValues":{"status":"NotSpecified","environmentVariableName":""}},"dataSources":{"Tickets":{"entitySetName":"dg_ticketses","logicalName":"dg_tickets"},"dg_supportstaffs":{"entitySetName":"dg_supportstaffs","logicalName":"dg_supportstaff"},"Support Staffs":{"entitySetName":"dg_supportstaffs","logicalName":"dg_supportstaff"},"dg_ticketattachmentses":{"entitySetName":"dg_ticketattachmentses","logicalName":"dg_ticketattachments"},"Ticket Attachments":{"entitySetName":"dg_ticketattachmentses","logicalName":"dg_ticketattachments"},"dg_ticketcomments":{"entitySetName":"dg_ticketcomments","logicalName":"dg_ticketcomment"},"Ticket Comments":{"entitySetName":"dg_ticketcomments","logicalName":"dg_ticketcomment"}}}}</DatabaseReferences>
+  <AppComponents>[]</AppComponents>
+  <AppComponentDependencies>[]</AppComponentDependencies>
+  <CanConsumeAppPass>1</CanConsumeAppPass>
+  <CanvasAppType>0</CanvasAppType>
+  <BypassConsent>0</BypassConsent>
+  <AdminControlBypassConsent>0</AdminControlBypassConsent>
+  <EmbeddedApp xsi:nil="true"></EmbeddedApp>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <CdsDependencies>{"cdsdependencies":[{"logicalname":"dg_tickets","componenttype":1},{"logicalname":"dg_supportstaff","componenttype":1},{"logicalname":"dg_ticketattachments","componenttype":1},{"logicalname":"dg_ticketcomment","componenttype":1}]}</CdsDependencies>
+  <IsCustomizable>1</IsCustomizable>
+  <BackgroundImageUri>/CanvasApps/dg_hollardzambiaithelpdesk_cb5f8_BackgroundImageUri</BackgroundImageUri>
+  <DocumentUri>/CanvasApps/dg_hollardzambiaithelpdesk_cb5f8_DocumentUri.msapp</DocumentUri>
+  <AdditionalUris>
+    <AdditionalUri>/CanvasApps/dg_hollardzambiaithelpdesk_cb5f8_AdditionalUris0_identity.json</AdditionalUri>
+  </AdditionalUris>
+</CanvasApp>
