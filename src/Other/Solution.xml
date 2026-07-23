@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.2.26063.162" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.26063.162" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.26064.00166">
+<ImportExportXml version="9.2.26064.166" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.26064.166" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.26064.00166">
   <SolutionManifest>
     <UniqueName>HollardZambiaITHelpDesk</UniqueName>
     <LocalizedNames>
       <LocalizedName description="Hollard Zambia IT Help Desk" languagecode="1033" />
     </LocalizedNames>
     <Descriptions />
-    <Version>1.0.0.2</Version>
+    <Version>1.0.0.3</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>Kama</UniqueName>
@@ -85,15 +85,19 @@
       <RootComponent type="300" schemaName="dg_hollardzambiaithelpdesk_cb5f8" behavior="0" />
       <RootComponent type="9" schemaName="dg_areaofoperation" behavior="0" />
       <RootComponent type="9" schemaName="dg_businesslisence" behavior="0" />
+      <RootComponent type="9" schemaName="dg_hardwarechangerequest" behavior="0" />
       <RootComponent type="9" schemaName="dg_impact" behavior="0" />
       <RootComponent type="9" schemaName="dg_incidents" behavior="0" />
+      <RootComponent type="9" schemaName="dg_infrastructurechangerequest" behavior="0" />
       <RootComponent type="9" schemaName="dg_jobstatus" behavior="0" />
       <RootComponent type="9" schemaName="dg_jobtype" behavior="0" />
       <RootComponent type="9" schemaName="dg_peripheralincident" behavior="0" />
       <RootComponent type="9" schemaName="dg_peripheralrequest" behavior="0" />
       <RootComponent type="9" schemaName="dg_priority" behavior="0" />
       <RootComponent type="9" schemaName="dg_requests" behavior="0" />
+      <RootComponent type="9" schemaName="dg_securitychangerequest" behavior="0" />
       <RootComponent type="9" schemaName="dg_systemaccessrequests" behavior="0" />
+      <RootComponent type="9" schemaName="dg_systemchangerequest" behavior="0" />
       <RootComponent type="9" schemaName="dg_systemincident" behavior="0" />
     </RootComponents>
     <MissingDependencies>

@@ -60,21 +60,5 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
     </option>
-    <option value="121790006" ExternalValue="" IsHidden="0">
-      <labels>
-        <label description="Cancelled" languagecode="1033" />
-      </labels>
-      <Descriptions>
-        <Description description="" languagecode="1033" />
-      </Descriptions>
-    </option>
-    <option value="121790007" ExternalValue="" IsHidden="0">
-      <labels>
-        <label description="Rejected" languagecode="1033" />
-      </labels>
-      <Descriptions>
-        <Description description="" languagecode="1033" />
-      </Descriptions>
-    </option>
   </options>
 </optionset>

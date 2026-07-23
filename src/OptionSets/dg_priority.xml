@@ -12,6 +12,22 @@
     <Description description="" languagecode="1033" />
   </Descriptions>
   <options>
+    <option value="121790002" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Low" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="121790003" IsHidden="0">
+      <labels>
+        <label description="Medium" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
     <option value="121790000" ExternalValue="" IsHidden="0">
       <labels>
         <label description="High" languagecode="1033" />
@@ -23,14 +39,6 @@
     <option value="121790001" ExternalValue="" IsHidden="0">
       <labels>
         <label description="Critical" languagecode="1033" />
-      </labels>
-      <Descriptions>
-        <Description description="" languagecode="1033" />
-      </Descriptions>
-    </option>
-    <option value="121790002" ExternalValue="" IsHidden="0">
-      <labels>
-        <label description="Low" languagecode="1033" />
       </labels>
       <Descriptions>
         <Description description="" languagecode="1033" />

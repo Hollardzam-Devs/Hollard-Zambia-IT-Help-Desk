@@ -8,6 +8,7 @@
   <EntityRelationship Name="dg_ticketcomment_Commentedby_dg_supportstaff" />
   <EntityRelationship Name="dg_ticketcomment_Ticket_dg_tickets" />
   <EntityRelationship Name="dg_Tickets_dg_SupportStaff_dg_SupportStaff" />
+  <EntityRelationship Name="FileAttachment_dg_Tickets_dg_ScreenshotorSupportingDocument" />
   <EntityRelationship Name="lk_dg_supportstaff_createdby" />
   <EntityRelationship Name="lk_dg_supportstaff_modifiedby" />
   <EntityRelationship Name="lk_dg_ticketattachments_createdby" />
