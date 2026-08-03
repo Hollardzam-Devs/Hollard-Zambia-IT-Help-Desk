@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<optionset Name="dg_department" localizedName="Department" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <OptionSetType>picklist</OptionSetType>
+  <IsGlobal>1</IsGlobal>
+  <IntroducedVersion>1.0.0.3</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <ExternalTypeName></ExternalTypeName>
+  <displaynames>
+    <displayname description="Department" languagecode="1033" />
+  </displaynames>
+  <Descriptions>
+    <Description description="" languagecode="1033" />
+  </Descriptions>
+  <options>
+    <option value="121790000" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Finance" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="121790001" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Finance/Credit Control" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="121790002" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Direct Business" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="121790003" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Direct Sales" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="121790004" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Corporate Sales" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="121790005" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Operations" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="121790006" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="New Business" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="121790007" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Customer Experience" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="121790008" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Underwriting" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="121790009" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Claims" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="121790010" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Bancassurance" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="121790011" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Broker Markets" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="121790012" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Emerging Markets" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="121790013" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Reinsurance" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="121790014" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Policy Admin" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+  </options>
+</optionset>

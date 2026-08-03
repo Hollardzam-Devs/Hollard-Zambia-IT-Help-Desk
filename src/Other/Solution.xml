@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.2.26064.166" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.26064.166" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.26064.00166">
+<ImportExportXml version="9.2.26071.167" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.26071.167" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.26071.00167">
   <SolutionManifest>
     <UniqueName>HollardZambiaITHelpDesk</UniqueName>
     <LocalizedNames>
       <LocalizedName description="Hollard Zambia IT Help Desk" languagecode="1033" />
     </LocalizedNames>
     <Descriptions />
-    <Version>1.0.0.3</Version>
+    <Version>1.0.0.4</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>Kama</UniqueName>
@@ -78,13 +78,19 @@
       </Addresses>
     </Publisher>
     <RootComponents>
+      <RootComponent type="1" schemaName="dg_organisationstructure" behavior="0" />
       <RootComponent type="1" schemaName="dg_supportstaff" behavior="0" />
       <RootComponent type="1" schemaName="dg_ticketattachments" behavior="0" />
       <RootComponent type="1" schemaName="dg_ticketcomment" behavior="0" />
       <RootComponent type="1" schemaName="dg_tickets" behavior="0" />
+      <RootComponent type="1" schemaName="systemuser" behavior="1" />
+      <RootComponent type="29" id="{7242f69d-1588-f111-ab0f-70a8a580e941}" behavior="0" />
+      <RootComponent type="29" id="{8a54ddf6-9f86-f111-ab0e-70a8a580e941}" behavior="0" />
       <RootComponent type="300" schemaName="dg_hollardzambiaithelpdesk_cb5f8" behavior="0" />
+      <RootComponent type="9" schemaName="dg_accessaction" behavior="0" />
       <RootComponent type="9" schemaName="dg_areaofoperation" behavior="0" />
       <RootComponent type="9" schemaName="dg_businesslisence" behavior="0" />
+      <RootComponent type="9" schemaName="dg_department" behavior="0" />
       <RootComponent type="9" schemaName="dg_hardwarechangerequest" behavior="0" />
       <RootComponent type="9" schemaName="dg_impact" behavior="0" />
       <RootComponent type="9" schemaName="dg_incidents" behavior="0" />
@@ -101,6 +107,10 @@
       <RootComponent type="9" schemaName="dg_systemincident" behavior="0" />
     </RootComponents>
     <MissingDependencies>
+      <MissingDependency>
+        <Required type="1" schemaName="systemuser" displayName="SystemUser" parentSchemaName="" solution="msdyn_PowerAdminSettingsEmail (2.2.3468.1)" />
+        <Dependent type="1" schemaName="systemuser" displayName="SystemUser" />
+      </MissingDependency>
       <MissingDependency>
         <Required type="9" schemaName="msdyn_flow_approval_priority" displayName="Priority" solution="msdyn_FlowApprovalsCore (2.2.16.0)">
           <package appName="msdyn_FlowApprovals" version="2.2.16.0">msdyn_FlowApprovals (2.2.16.0)</package>

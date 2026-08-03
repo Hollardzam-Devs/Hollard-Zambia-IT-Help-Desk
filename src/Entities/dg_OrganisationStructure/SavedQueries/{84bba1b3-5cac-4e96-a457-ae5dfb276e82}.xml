@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{84bba1b3-5cac-4e96-a457-ae5dfb276e82}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="dg_newcolumn" select="1" icon="1" preview="1">
+        <row name="result" id="dg_organisationstructureid">
+          <cell name="dg_newcolumn" width="300" />
+          <cell name="dg_positionname" width="150" />
+          <cell name="dg_employeename" width="150" />
+          <cell name="dg_employeenumber" width="150" />
+          <cell name="dg_reportsto" width="150" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="dg_organisationstructure">
+          <attribute name="dg_organisationstructureid" />
+          <attribute name="dg_newcolumn" />
+          <attribute name="createdon" />
+          <order attribute="dg_newcolumn" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="dg_positionname" />
+          <attribute name="dg_employeename" />
+          <attribute name="dg_employeenumber" />
+          <attribute name="dg_reportsto" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Organisation Structures" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

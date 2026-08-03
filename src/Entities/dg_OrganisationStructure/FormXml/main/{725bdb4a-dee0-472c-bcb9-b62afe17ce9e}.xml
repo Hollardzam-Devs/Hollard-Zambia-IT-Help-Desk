@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{725bdb4a-dee0-472c-bcb9-b62afe17ce9e}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab verticallayout="true" id="{19D1A9D2-C418-40E6-8B7F-9326E4435615}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{FCDBE6BD-E025-4231-87B5-284FA21CE1F1}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{CDF86CFF-44D2-467B-844A-1FD9DCD68690}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="dg_newcolumn" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="dg_Newcolumn" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3FBFD894-2585-4860-8B44-D91FE9779557}">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0ad0473a-a093-46e9-8147-4ea90e9ab6f5}">
+                        <labels>
+                          <label description="Position Name" languagecode="1033" />
+                        </labels>
+                        <control id="dg_positionname" classid="{4273edbd-ac1d-40d3-9fb2-095c621b552d}" datafieldname="dg_positionname" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2998f621-aef4-4848-8d82-f9c02491b699}">
+                        <labels>
+                          <label description="Employee Name" languagecode="1033" />
+                        </labels>
+                        <control id="dg_employeename" classid="{4273edbd-ac1d-40d3-9fb2-095c621b552d}" datafieldname="dg_employeename" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{82739168-e132-4de6-83b1-0201ec4d1c7a}">
+                        <labels>
+                          <label description="Employee Number" languagecode="1033" />
+                        </labels>
+                        <control id="dg_employeenumber" classid="{4273edbd-ac1d-40d3-9fb2-095c621b552d}" datafieldname="dg_employeenumber" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{41952e21-1232-4b25-9df1-8a9cfff1d767}">
+                        <labels>
+                          <label description="Reports To" languagecode="1033" />
+                        </labels>
+                        <control id="dg_reportsto" classid="{270bd3db-d9af-4782-9025-509e298dec0a}" datafieldname="dg_reportsto" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

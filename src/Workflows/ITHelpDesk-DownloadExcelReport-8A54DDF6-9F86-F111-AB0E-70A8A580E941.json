@@ -1,0 +1,214 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "dg_sharedcommondataserviceforapps_ddd85"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_sharepointonline": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "dg_sharedsharepointonline_f5459"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      },
+      "shared_excelonlinebusiness": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "dg_sharedexcelonlinebusiness_b2536"
+        },
+        "api": {
+          "name": "shared_excelonlinebusiness"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "2c13795e-c50f-436a-b83f-a47758558fc1"
+          },
+          "type": "Request",
+          "kind": "PowerAppV2",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "fromDate",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "toDate",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_2": {
+                  "title": "Status",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_3": {
+                  "title": "ticketType",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_4": {
+                  "title": "Priority",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text",
+                "text_1",
+                "text_2",
+                "text_3",
+                "text_4"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "List_rows": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "9dc720a3-fa3d-4daf-ac0e-4cd3be25b79b"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "entityName": "dg_ticketses",
+              "$filter": "@concat(\r\n    'createdon ge ',\r\n    '''',\r\n    triggerBody()?['Text'],\r\n    '''',\r\n    ' and createdon lt ',\r\n    '''',\r\n    formatDateTime(\r\n        addDays(\r\n            triggerBody()?['Text_1'],\r\n            1\r\n        ),\r\n        'yyyy-MM-ddT00:00:00Z'\r\n    ),\r\n    '''',\r\n\r\n    if(\r\n        equals(\r\n            triggerBody()?['Text_2'],\r\n            'All Statuses'\r\n        ),\r\n        '',\r\n        concat(\r\n            ' and dg_ticketstatus eq ',\r\n            if(\r\n                equals(triggerBody()?['Text_2'], 'New'),\r\n                '121790000',\r\n                if(\r\n                    equals(triggerBody()?['Text_2'], 'Assigned'),\r\n                    '121790001',\r\n                    if(\r\n                        equals(triggerBody()?['Text_2'], 'In Progress'),\r\n                        '121790002',\r\n                        if(\r\n                            equals(triggerBody()?['Text_2'], 'Pending Further Action'),\r\n                            '121790003',\r\n                            if(\r\n                                equals(triggerBody()?['Text_2'], 'Resolved'),\r\n                                '121790004',\r\n                                if(\r\n                                    equals(triggerBody()?['Text_2'], 'Closed'),\r\n                                    '121790005',\r\n                                    ''\r\n                                )\r\n                            )\r\n                        )\r\n                    )\r\n                )\r\n            )\r\n        )\r\n    ),\r\n\r\n    if(\r\n        equals(\r\n            triggerBody()?['Text_3'],\r\n            'All Types'\r\n        ),\r\n        '',\r\n        if(\r\n            equals(\r\n                triggerBody()?['Text_3'],\r\n                'Peripheral Request'\r\n            ),\r\n            ' and dg_requesttype eq 121790000',\r\n            if(\r\n                equals(\r\n                    triggerBody()?['Text_3'],\r\n                    'System Access Request'\r\n                ),\r\n                ' and dg_requesttype eq 121790001',\r\n                if(\r\n                    equals(\r\n                        triggerBody()?['Text_3'],\r\n                        'Access Control Request'\r\n                    ),\r\n                    ' and dg_requesttype eq 121790002',\r\n                    if(\r\n                        equals(\r\n                            triggerBody()?['Text_3'],\r\n                            'Change Request'\r\n                        ),\r\n                        ' and dg_requesttype eq 121790003',\r\n                        if(\r\n                            equals(\r\n                                triggerBody()?['Text_3'],\r\n                                'Peripheral Incident'\r\n                            ),\r\n                            ' and dg_incident eq 121790000',\r\n                            if(\r\n                                equals(\r\n                                    triggerBody()?['Text_3'],\r\n                                    'Systems Access Incident'\r\n                                ),\r\n                                ' and dg_incident eq 121790001',\r\n                                if(\r\n                                    equals(\r\n                                        triggerBody()?['Text_3'],\r\n                                        'Access Control Incident'\r\n                                    ),\r\n                                    ' and dg_incident eq 121790002',\r\n                                    if(\r\n                                        equals(\r\n                                            triggerBody()?['Text_3'],\r\n                                            'Network/Internet Connectivity Incident'\r\n                                        ),\r\n                                        ' and dg_incident eq 121790003',\r\n                                        ''\r\n                                    )\r\n                                )\r\n                            )\r\n                        )\r\n                    )\r\n                )\r\n            )\r\n        )\r\n    )\r\n)"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "connectionName": "shared_commondataserviceforapps"
+            }
+          }
+        },
+        "Get_file_content_using_path": {
+          "runAfter": {
+            "List_rows": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d6820ecd-0f48-46fd-a46f-9964af4cce41"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "dataset": "https://hollardzam.sharepoint.com/sites/HollardITHelpDesk",
+              "path": "/IT Help Desk Reports/Ticket Management.xlsx",
+              "inferContentType": true
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+              "operationId": "GetFileContentByPath",
+              "connectionName": "shared_sharepointonline"
+            }
+          }
+        },
+        "Create_file": {
+          "runAfter": {
+            "Get_file_content_using_path": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "81ce27e7-cab8-42dc-afac-7158153e4825"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "dataset": "https://hollardzam.sharepoint.com/sites/HollardITHelpDesk",
+              "folderPath": "/IT Help Desk Reports/Generated Report",
+              "name": "@concat(\r\n    'IT Help Desk Report - ',\r\n    formatDateTime(utcNow(), 'yyyy-MM-dd-HH-mm-ss'),\r\n    '.xlsx'\r\n)",
+              "body": "@body('Get_file_content_using_path')"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+              "operationId": "CreateFile",
+              "connectionName": "shared_sharepointonline"
+            }
+          },
+          "runtimeConfiguration": {
+            "contentTransfer": {
+              "transferMode": "Chunked"
+            }
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@outputs('List_rows')?['body/value']",
+          "actions": {
+            "Add_a_row_into_a_table": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "source": "sites/hollardzam.sharepoint.com,3469e2bc-e158-4eeb-bdf6-610c0da1ca8b,b987562f-21a0-47bb-bf57-150e52ba8eb8",
+                  "drive": "b!vOJpNFjh60699mEMDaHKiy9Wh7mgIbtHv1cVDlK6jrjJNTt7pYcCQrFm13xJsy_2",
+                  "file": "@outputs('Create_file')?['body/Id']",
+                  "table": "Tickets",
+                  "item": {
+                    "TicketID": "@{items('Apply_to_each')?['dg_ticketnumber']}",
+                    "Title": "@{items('Apply_to_each')?['dg_title']}",
+                    "Description": "@{items('Apply_to_each')?['dg_description']}",
+                    "RequestType": "@{if(equals(items('Apply_to_each')?['dg_jobtype'], 121790000), items('Apply_to_each')?['dg_requesttype@OData.Community.Display.V1.FormattedValue'], items('Apply_to_each')?['dg_incident@OData.Community.Display.V1.FormattedValue'])}",
+                    "CreatedOn": "@{items('Apply_to_each')?['createdon']}"
+                  }
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness",
+                  "operationId": "AddRowV2",
+                  "connectionName": "shared_excelonlinebusiness"
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Create_file": [
+              "Succeeded"
+            ]
+          },
+          "type": "Foreach"
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}
