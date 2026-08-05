@@ -14,7 +14,7 @@
   <options>
     <option value="121790000" ExternalValue="" IsHidden="0">
       <labels>
-        <label description="Laptop Request" languagecode="1033" />
+        <label description="Laptop" languagecode="1033" />
       </labels>
       <Descriptions>
         <Description description="" languagecode="1033" />
@@ -22,7 +22,7 @@
     </option>
     <option value="121790001" ExternalValue="" IsHidden="0">
       <labels>
-        <label description="Mouse Request" languagecode="1033" />
+        <label description="Mouse" languagecode="1033" />
       </labels>
       <Descriptions>
         <Description description="" languagecode="1033" />
@@ -30,7 +30,7 @@
     </option>
     <option value="121790002" ExternalValue="" IsHidden="0">
       <labels>
-        <label description="Screen Request" languagecode="1033" />
+        <label description="Screen" languagecode="1033" />
       </labels>
       <Descriptions>
         <Description description="" languagecode="1033" />
@@ -38,7 +38,7 @@
     </option>
     <option value="121790003" ExternalValue="" IsHidden="0">
       <labels>
-        <label description="Monitor Request" languagecode="1033" />
+        <label description="Monitor" languagecode="1033" />
       </labels>
       <Descriptions>
         <Description description="" languagecode="1033" />
@@ -46,7 +46,7 @@
     </option>
     <option value="121790004" ExternalValue="" IsHidden="0">
       <labels>
-        <label description="Printer Request" languagecode="1033" />
+        <label description="Printer" languagecode="1033" />
       </labels>
       <Descriptions>
         <Description description="" languagecode="1033" />
@@ -54,7 +54,7 @@
     </option>
     <option value="121790005" ExternalValue="" IsHidden="0">
       <labels>
-        <label description="Keyboard Request" languagecode="1033" />
+        <label description="Keyboard" languagecode="1033" />
       </labels>
       <Descriptions>
         <Description description="" languagecode="1033" />
@@ -62,7 +62,7 @@
     </option>
     <option value="121790006" ExternalValue="" IsHidden="0">
       <labels>
-        <label description="Headphone Request" languagecode="1033" />
+        <label description="Headphone" languagecode="1033" />
       </labels>
       <Descriptions>
         <Description description="" languagecode="1033" />
@@ -70,7 +70,7 @@
     </option>
     <option value="121790007" ExternalValue="" IsHidden="0">
       <labels>
-        <label description="Hub Request" languagecode="1033" />
+        <label description="Hub" languagecode="1033" />
       </labels>
       <Descriptions>
         <Description description="" languagecode="1033" />

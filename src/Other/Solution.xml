@@ -6,7 +6,7 @@
       <LocalizedName description="Hollard Zambia IT Help Desk" languagecode="1033" />
     </LocalizedNames>
     <Descriptions />
-    <Version>1.0.0.4</Version>
+    <Version>1.0.0.5</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>Kama</UniqueName>
@@ -83,11 +83,13 @@
       <RootComponent type="1" schemaName="dg_ticketattachments" behavior="0" />
       <RootComponent type="1" schemaName="dg_ticketcomment" behavior="0" />
       <RootComponent type="1" schemaName="dg_tickets" behavior="0" />
+      <RootComponent type="1" schemaName="dg_userroles" behavior="0" />
       <RootComponent type="1" schemaName="systemuser" behavior="1" />
       <RootComponent type="29" id="{7242f69d-1588-f111-ab0f-70a8a580e941}" behavior="0" />
       <RootComponent type="29" id="{8a54ddf6-9f86-f111-ab0e-70a8a580e941}" behavior="0" />
       <RootComponent type="300" schemaName="dg_hollardzambiaithelpdesk_cb5f8" behavior="0" />
       <RootComponent type="9" schemaName="dg_accessaction" behavior="0" />
+      <RootComponent type="9" schemaName="dg_approvalstatus" behavior="0" />
       <RootComponent type="9" schemaName="dg_areaofoperation" behavior="0" />
       <RootComponent type="9" schemaName="dg_businesslisence" behavior="0" />
       <RootComponent type="9" schemaName="dg_department" behavior="0" />

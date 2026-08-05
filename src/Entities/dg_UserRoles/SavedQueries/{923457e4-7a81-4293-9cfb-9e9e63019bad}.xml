@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>1</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{923457e4-7a81-4293-9cfb-9e9e63019bad}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="dg_newcolumn" select="1" icon="1" preview="1">
+        <row name="result" id="dg_userrolesid">
+          <cell name="dg_newcolumn" width="300" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>4</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="dg_userroles">
+          <attribute name="dg_userrolesid" />
+          <attribute name="dg_newcolumn" />
+          <attribute name="createdon" />
+          <order attribute="dg_newcolumn" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <filter type="or" isquickfindfields="1">
+            <condition attribute="dg_newcolumn" operator="like" value="{0}" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Quick Find Active User Roles" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
