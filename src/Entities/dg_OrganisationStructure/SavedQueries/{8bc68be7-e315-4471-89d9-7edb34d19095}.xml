@@ -12,6 +12,10 @@
         <row name="result" id="dg_organisationstructureid">
           <cell name="dg_newcolumn" width="300" />
           <cell name="createdon" width="125" />
+          <cell name="dg_positionname" width="123" />
+          <cell name="dg_reportsto" width="102" />
+          <cell name="dg_employees" width="103" />
+          <cell name="dg_employeenumber" width="147" />
         </row>
       </grid>
     </layoutxml>
@@ -26,6 +30,10 @@
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="1" />
           </filter>
+          <attribute name="dg_positionname" />
+          <attribute name="dg_reportsto" />
+          <attribute name="dg_employees" />
+          <attribute name="dg_employeenumber" />
         </entity>
       </fetch>
     </fetchxml>

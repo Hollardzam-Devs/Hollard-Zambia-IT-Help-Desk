@@ -15,6 +15,7 @@
           <cell name="dg_employeename" width="150" />
           <cell name="dg_employeenumber" width="150" />
           <cell name="dg_reportsto" width="150" />
+          <cell name="dg_employees" width="103" />
         </row>
       </grid>
     </layoutxml>
@@ -33,6 +34,7 @@
           <attribute name="dg_employeename" />
           <attribute name="dg_employeenumber" />
           <attribute name="dg_reportsto" />
+          <attribute name="dg_employees" />
         </entity>
       </fetch>
     </fetchxml>

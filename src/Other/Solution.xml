@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.2.26072.144" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.26072.144" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.26072.00144">
+<ImportExportXml version="9.2.26091.158" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.26091.158" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.26091.00158">
   <SolutionManifest>
     <UniqueName>HollardZambiaITHelpDesk</UniqueName>
     <LocalizedNames>
       <LocalizedName description="Hollard Zambia IT Help Desk" languagecode="1033" />
     </LocalizedNames>
     <Descriptions />
-    <Version>1.0.0.5</Version>
+    <Version>1.0.0.6</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>Kama</UniqueName>
@@ -111,12 +111,12 @@
     </RootComponents>
     <MissingDependencies>
       <MissingDependency>
-        <Required type="1" schemaName="systemuser" displayName="SystemUser" parentSchemaName="" solution="msdyn_PowerAdminSettingsEmail (2.2.3475.1)" />
+        <Required type="1" schemaName="systemuser" displayName="SystemUser" parentSchemaName="" solution="msdyn_PowerAdminSettingsEmail (2.2.3517.1)" />
         <Dependent type="1" schemaName="systemuser" displayName="SystemUser" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="9" schemaName="msdyn_flow_approval_priority" displayName="Priority" solution="msdyn_FlowApprovalsCore (2.2.16.0)">
-          <package appName="msdyn_FlowApprovals" version="2.2.16.0">msdyn_FlowApprovals (2.2.16.0)</package>
+        <Required type="9" schemaName="msdyn_flow_approval_priority" displayName="Priority" solution="msdyn_FlowApprovalsCore (2.2.17.0)">
+          <package appName="msdyn_FlowApprovals" version="2.2.17.0">msdyn_FlowApprovals (2.2.17.0)</package>
         </Required>
         <Dependent type="2" schemaName="dg_priority" displayName="Priority" parentSchemaName="dg_tickets" parentDisplayName="Tickets" />
       </MissingDependency>

@@ -67,6 +67,22 @@
                         <control id="dg_reportsto" classid="{270bd3db-d9af-4782-9025-509e298dec0a}" datafieldname="dg_reportsto" />
                       </cell>
                     </row>
+                    <row>
+                      <cell id="{5fcecd31-6d57-45fa-bff4-040d61fc553d}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Title" languagecode="1033" />
+                        </labels>
+                        <control id="dg_newcolumn" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="dg_newcolumn" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{844ff516-d82a-45d2-9fbf-8c1ccde097fc}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Employees" languagecode="1033" />
+                        </labels>
+                        <control id="dg_employees" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="dg_employees" disabled="false" />
+                      </cell>
+                    </row>
                   </rows>
                 </section>
               </sections>
@@ -74,6 +90,51 @@
           </columns>
         </tab>
       </tabs>
+      <header id="{7da1d277-9ece-4bb0-afd4-165e12e8b4e4}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{33dd93d3-e54c-459e-a753-fc3157f9f4de}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{a28911df-6df3-4d89-8eb1-07a49c85bb95}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{e2aa1f14-a775-48c3-b199-0a170e71974f}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{fce8ce80-5df2-4685-9690-34e43021625a}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{9e64d135-613f-40ea-82ba-af27cc7da94f}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{96b75dc1-b3f2-4532-b5a3-ce98993958d8}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{a11d6507-89f8-422c-94bf-12bf3a6ba0e3}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>

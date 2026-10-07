@@ -2,22 +2,22 @@
   "properties": {
     "connectionReferences": {
       "shared_commondataserviceforapps": {
-        "runtimeSource": "embedded",
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        },
         "connection": {
           "connectionReferenceLogicalName": "dg_sharedcommondataserviceforapps_ddd85"
         },
-        "api": {
-          "name": "shared_commondataserviceforapps"
-        }
+        "runtimeSource": "embedded"
       },
       "shared_approvals": {
-        "runtimeSource": "embedded",
+        "api": {
+          "name": "shared_approvals"
+        },
         "connection": {
           "connectionReferenceLogicalName": "new_sharedapprovals_71705"
         },
-        "api": {
-          "name": "shared_approvals"
-        }
+        "runtimeSource": "embedded"
       }
     },
     "definition": {
@@ -35,9 +35,6 @@
       },
       "triggers": {
         "When_a_row_is_added,_modified_or_deleted": {
-          "metadata": {
-            "operationMetadataId": "738a847b-d463-47a3-a92d-98ee16dcb2e9"
-          },
           "type": "OpenApiConnectionWebhook",
           "inputs": {
             "parameters": {
@@ -50,21 +47,27 @@
               "operationId": "SubscribeWebhookTrigger",
               "connectionName": "shared_commondataserviceforapps"
             }
+          },
+          "metadata": {
+            "operationMetadataId": "738a847b-d463-47a3-a92d-98ee16dcb2e9"
           }
         }
       },
       "actions": {
         "Condition_to_Test_if_request_type_is_a_System_Access_Request": {
+          "type": "If",
+          "expression": {
+            "and": [
+              {
+                "equals": [
+                  "@triggerOutputs()?['body/dg_requesttype']",
+                  121790001
+                ]
+              }
+            ]
+          },
           "actions": {
             "Get_Requester_Record": {
-              "runAfter": {
-                "Update_a_row": [
-                  "Succeeded"
-                ]
-              },
-              "metadata": {
-                "operationMetadataId": "d7ab456c-f04e-4926-a3b0-5e6880da0ef9"
-              },
               "type": "OpenApiConnection",
               "inputs": {
                 "parameters": {
@@ -76,15 +79,21 @@
                   "operationId": "ListRecords",
                   "connectionName": "shared_commondataserviceforapps"
                 }
+              },
+              "runAfter": {
+                "Update_a_row": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "d7ab456c-f04e-4926-a3b0-5e6880da0ef9"
               }
             },
             "For_each": {
+              "type": "Foreach",
               "foreach": "@outputs('Get_Requester_Record')?['body/value']",
               "actions": {
                 "Get_Requester_Org_Structure": {
-                  "metadata": {
-                    "operationMetadataId": "d72c18d3-8dc1-4a39-8244-02d3847d19a5"
-                  },
                   "type": "OpenApiConnection",
                   "inputs": {
                     "parameters": {
@@ -96,17 +105,12 @@
                       "operationId": "GetItem",
                       "connectionName": "shared_commondataserviceforapps"
                     }
+                  },
+                  "metadata": {
+                    "operationMetadataId": "d72c18d3-8dc1-4a39-8244-02d3847d19a5"
                   }
                 },
                 "Get_Requester_Manager": {
-                  "runAfter": {
-                    "Get_Requester_Org_Structure": [
-                      "Succeeded"
-                    ]
-                  },
-                  "metadata": {
-                    "operationMetadataId": "4af0ded1-9788-4c58-87e7-d783019c1830"
-                  },
                   "type": "OpenApiConnection",
                   "inputs": {
                     "parameters": {
@@ -118,17 +122,17 @@
                       "operationId": "GetItem",
                       "connectionName": "shared_commondataserviceforapps"
                     }
-                  }
-                },
-                "Get_Requester_Line_Manager-User": {
+                  },
                   "runAfter": {
-                    "Get_Requester_Manager": [
+                    "Get_Requester_Org_Structure": [
                       "Succeeded"
                     ]
                   },
                   "metadata": {
-                    "operationMetadataId": "2e5e73c5-ee30-4108-8626-25889bdb7967"
-                  },
+                    "operationMetadataId": "4af0ded1-9788-4c58-87e7-d783019c1830"
+                  }
+                },
+                "Get_Requester_Line_Manager-User": {
                   "type": "OpenApiConnection",
                   "inputs": {
                     "parameters": {
@@ -140,9 +144,22 @@
                       "operationId": "GetItem",
                       "connectionName": "shared_commondataserviceforapps"
                     }
+                  },
+                  "runAfter": {
+                    "Get_Requester_Manager": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "2e5e73c5-ee30-4108-8626-25889bdb7967"
                   }
                 },
                 "Set_CurrentApproverID": {
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "varCurrentApproverID",
+                    "value": "@outputs('Get_Requester_Line_Manager-User')?['body/systemuserid']"
+                  },
                   "runAfter": {
                     "Get_Requester_Line_Manager-User": [
                       "Succeeded"
@@ -150,11 +167,6 @@
                   },
                   "metadata": {
                     "operationMetadataId": "5aaa0c0a-c9a5-4452-9381-c41ee4de26fd"
-                  },
-                  "type": "SetVariable",
-                  "inputs": {
-                    "name": "varCurrentApproverID",
-                    "value": "@outputs('Get_Requester_Line_Manager-User')?['body/systemuserid']"
                   }
                 }
               },
@@ -165,15 +177,17 @@
               },
               "metadata": {
                 "operationMetadataId": "f4531884-814d-4063-a481-2fae97edfba3"
-              },
-              "type": "Foreach"
+              }
             },
             "Do_until": {
+              "type": "Until",
+              "expression": "@equals(variables('varApprovalComplete'),true)",
+              "limit": {
+                "count": 60,
+                "timeout": "PT1H"
+              },
               "actions": {
                 "Get_Current_Approver_User": {
-                  "metadata": {
-                    "operationMetadataId": "53ce0790-ca04-4422-8fa7-ae6e8fc389bc"
-                  },
                   "type": "OpenApiConnection",
                   "inputs": {
                     "parameters": {
@@ -185,93 +199,13 @@
                       "operationId": "GetItem",
                       "connectionName": "shared_commondataserviceforapps"
                     }
+                  },
+                  "metadata": {
+                    "operationMetadataId": "53ce0790-ca04-4422-8fa7-ae6e8fc389bc"
                   }
                 },
                 "Condition": {
-                  "actions": {
-                    "Set_variable_1": {
-                      "metadata": {
-                        "operationMetadataId": "6855374f-0105-4a68-bd2e-e5942860ed06"
-                      },
-                      "type": "SetVariable",
-                      "inputs": {
-                        "name": "varApprovalComplete",
-                        "value": true
-                      }
-                    }
-                  },
-                  "runAfter": {
-                    "Scope": [
-                      "Succeeded"
-                    ]
-                  },
-                  "else": {
-                    "actions": {
-                      "List_rows": {
-                        "metadata": {
-                          "operationMetadataId": "ca09f246-d59b-43a6-9ed8-e560bb4d9419"
-                        },
-                        "type": "OpenApiConnection",
-                        "inputs": {
-                          "parameters": {
-                            "entityName": "dg_organisationstructures",
-                            "$filter": "dg_Employees/systemuserid eq '@{variables('varCurrentApproverID')}'"
-                          },
-                          "host": {
-                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
-                            "operationId": "ListRecords",
-                            "connectionName": "shared_commondataserviceforapps"
-                          }
-                        }
-                      },
-                      "Apply_to_each": {
-                        "foreach": "@outputs('List_rows')?['body/value']",
-                        "actions": {
-                          "Get_a_row_by_ID": {
-                            "metadata": {
-                              "operationMetadataId": "534a96bb-a4b3-4c56-b309-2eaa895de7c3"
-                            },
-                            "type": "OpenApiConnection",
-                            "inputs": {
-                              "parameters": {
-                                "entityName": "dg_organisationstructures",
-                                "recordId": "@items('Apply_to_each')?['_dg_reportsto_value']"
-                              },
-                              "host": {
-                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
-                                "operationId": "GetItem",
-                                "connectionName": "shared_commondataserviceforapps"
-                              }
-                            }
-                          },
-                          "Set_variable_2": {
-                            "runAfter": {
-                              "Get_a_row_by_ID": [
-                                "Succeeded"
-                              ]
-                            },
-                            "metadata": {
-                              "operationMetadataId": "25990789-5739-40b8-b867-93fe495302fe"
-                            },
-                            "type": "SetVariable",
-                            "inputs": {
-                              "name": "varCurrentApproverID",
-                              "value": "@outputs('Get_a_row_by_ID')?['body/_dg_employees_value']"
-                            }
-                          }
-                        },
-                        "runAfter": {
-                          "List_rows": [
-                            "Succeeded"
-                          ]
-                        },
-                        "metadata": {
-                          "operationMetadataId": "29d1a7e9-d715-43dd-a92f-fb35a8b61591"
-                        },
-                        "type": "Foreach"
-                      }
-                    }
-                  },
+                  "type": "If",
                   "expression": {
                     "or": [
                       {
@@ -288,29 +222,105 @@
                       }
                     ]
                   },
+                  "actions": {
+                    "Set_variable_1": {
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "varApprovalComplete",
+                        "value": true
+                      },
+                      "metadata": {
+                        "operationMetadataId": "6855374f-0105-4a68-bd2e-e5942860ed06"
+                      }
+                    }
+                  },
+                  "else": {
+                    "actions": {
+                      "List_rows": {
+                        "type": "OpenApiConnection",
+                        "inputs": {
+                          "parameters": {
+                            "entityName": "dg_organisationstructures",
+                            "$filter": "dg_Employees/systemuserid eq '@{variables('varCurrentApproverID')}'"
+                          },
+                          "host": {
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                            "operationId": "ListRecords",
+                            "connectionName": "shared_commondataserviceforapps"
+                          }
+                        },
+                        "metadata": {
+                          "operationMetadataId": "ca09f246-d59b-43a6-9ed8-e560bb4d9419"
+                        }
+                      },
+                      "Apply_to_each": {
+                        "type": "Foreach",
+                        "foreach": "@outputs('List_rows')?['body/value']",
+                        "actions": {
+                          "Get_a_row_by_ID": {
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                              "parameters": {
+                                "entityName": "dg_organisationstructures",
+                                "recordId": "@items('Apply_to_each')?['_dg_reportsto_value']"
+                              },
+                              "host": {
+                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                                "operationId": "GetItem",
+                                "connectionName": "shared_commondataserviceforapps"
+                              }
+                            },
+                            "metadata": {
+                              "operationMetadataId": "534a96bb-a4b3-4c56-b309-2eaa895de7c3"
+                            }
+                          },
+                          "Set_variable_2": {
+                            "type": "SetVariable",
+                            "inputs": {
+                              "name": "varCurrentApproverID",
+                              "value": "@outputs('Get_a_row_by_ID')?['body/_dg_employees_value']"
+                            },
+                            "runAfter": {
+                              "Get_a_row_by_ID": [
+                                "Succeeded"
+                              ]
+                            },
+                            "metadata": {
+                              "operationMetadataId": "25990789-5739-40b8-b867-93fe495302fe"
+                            }
+                          }
+                        },
+                        "runAfter": {
+                          "List_rows": [
+                            "Succeeded"
+                          ]
+                        },
+                        "metadata": {
+                          "operationMetadataId": "29d1a7e9-d715-43dd-a92f-fb35a8b61591"
+                        }
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Scope": [
+                      "Succeeded"
+                    ]
+                  },
                   "metadata": {
                     "operationMetadataId": "e711426d-737a-4b0a-80eb-8f4e8c693334"
-                  },
-                  "type": "If"
+                  }
                 },
                 "Timeout_Escalation": {
+                  "type": "Scope",
                   "actions": {
                     "Compose_1": {
+                      "type": "Compose",
+                      "inputs": "@variables('varCurrentApproverID')",
                       "metadata": {
                         "operationMetadataId": "8631771b-8a55-4f50-a169-53ed9a2feed0"
-                      },
-                      "type": "Compose",
-                      "inputs": "@variables('varCurrentApproverID')"
+                      }
                     },
                     "List_Current_Approver_Org_Structure": {
-                      "runAfter": {
-                        "Compose_1": [
-                          "Succeeded"
-                        ]
-                      },
-                      "metadata": {
-                        "operationMetadataId": "82fda404-b86d-42aa-a6f8-ccb4fa5530e9"
-                      },
                       "type": "OpenApiConnection",
                       "inputs": {
                         "parameters": {
@@ -322,12 +332,26 @@
                           "operationId": "ListRecords",
                           "connectionName": "shared_commondataserviceforapps"
                         }
+                      },
+                      "runAfter": {
+                        "Compose_1": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "82fda404-b86d-42aa-a6f8-ccb4fa5530e9"
                       }
                     },
                     "For_each_1": {
+                      "type": "Foreach",
                       "foreach": "@outputs('List_Current_Approver_Org_Structure')?['body/value']",
                       "actions": {
                         "Set_variable_4": {
+                          "type": "SetVariable",
+                          "inputs": {
+                            "name": "varCurrentApproverID",
+                            "value": "@outputs('Get_a_row_by_ID_1')?['body/_dg_employees_value']"
+                          },
                           "runAfter": {
                             "Get_a_row_by_ID_1": [
                               "Succeeded"
@@ -335,11 +359,6 @@
                           },
                           "metadata": {
                             "operationMetadataId": "e66db16d-7bca-4348-8475-f5fc0c25d804"
-                          },
-                          "type": "SetVariable",
-                          "inputs": {
-                            "name": "varCurrentApproverID",
-                            "value": "@outputs('Get_a_row_by_ID_1')?['body/_dg_employees_value']"
                           }
                         },
                         "Get_a_row_by_ID_1": {
@@ -364,8 +383,7 @@
                       },
                       "metadata": {
                         "operationMetadataId": "084cc0c9-9ece-4d3c-8bc6-61bb4656cd36"
-                      },
-                      "type": "Foreach"
+                      }
                     }
                   },
                   "runAfter": {
@@ -376,15 +394,12 @@
                   },
                   "metadata": {
                     "operationMetadataId": "ead0edc5-1c98-48e7-865a-351256d7dc1d"
-                  },
-                  "type": "Scope"
+                  }
                 },
                 "Scope": {
+                  "type": "Scope",
                   "actions": {
                     "Start_and_wait_for_an_approval": {
-                      "limit": {
-                        "timeout": "PT2M"
-                      },
                       "type": "OpenApiConnectionWebhook",
                       "inputs": {
                         "parameters": {
@@ -397,6 +412,7 @@
                           "WebhookApprovalCreationInput/title": "System Access Request",
                           "WebhookApprovalCreationInput/assignedTo": "@outputs('Get_Current_Approver_User')?['body/internalemailaddress']",
                           "WebhookApprovalCreationInput/details": "A Change Request has been submitted and requires your approval.\n\nTicket Number: @{outputs('Get_RequestType')?['body/dg_ticketnumber']}\nRequested By: @{outputs('Get_User_FullName')?['body/fullname']}\nRequest Type: @{outputs('Get_RequestType')?['body/dg_requesttype@OData. Community.Display.V1.Formattedvalue']}\nReason : @{outputs('Get_RequestType')?['body/dg_justificationforchangerequest']}",
+                          "WebhookApprovalCreationInput/requestor": "helpdesk@hollardzam.com",
                           "WebhookApprovalCreationInput/enableNotifications": true,
                           "WebhookApprovalCreationInput/enableReassignment": true
                         },
@@ -405,6 +421,9 @@
                           "operationId": "StartAndWaitForAnApproval",
                           "connectionName": "shared_approvals"
                         }
+                      },
+                      "limit": {
+                        "timeout": "PT2M"
                       }
                     }
                   },
@@ -415,8 +434,7 @@
                   },
                   "metadata": {
                     "operationMetadataId": "501d2c65-e88d-4225-866d-5a3c34eb1552"
-                  },
-                  "type": "Scope"
+                  }
                 }
               },
               "runAfter": {
@@ -424,20 +442,11 @@
                   "Succeeded"
                 ]
               },
-              "expression": "@equals(variables('varApprovalComplete'),true)",
-              "limit": {
-                "count": 60,
-                "timeout": "PT1H"
-              },
               "metadata": {
                 "operationMetadataId": "165c45db-c110-442b-904e-8a51174d2a5f"
-              },
-              "type": "Until"
+              }
             },
             "Update_a_row": {
-              "metadata": {
-                "operationMetadataId": "b508562b-1aa6-4543-b98e-6d1a67fd312f"
-              },
               "type": "OpenApiConnection",
               "inputs": {
                 "parameters": {
@@ -450,14 +459,25 @@
                   "operationId": "UpdateOnlyRecord",
                   "connectionName": "shared_commondataserviceforapps"
                 }
+              },
+              "metadata": {
+                "operationMetadataId": "b508562b-1aa6-4543-b98e-6d1a67fd312f"
               }
             },
             "Condition_1": {
+              "type": "If",
+              "expression": {
+                "and": [
+                  {
+                    "equals": [
+                      "@outputs('Start_and_wait_for_an_approval')?['body/outcome']",
+                      "Approve"
+                    ]
+                  }
+                ]
+              },
               "actions": {
                 "Update_a_row_1": {
-                  "metadata": {
-                    "operationMetadataId": "ddb10569-8edd-4b88-a279-f963dd1719db"
-                  },
                   "type": "OpenApiConnection",
                   "inputs": {
                     "parameters": {
@@ -470,17 +490,26 @@
                       "operationId": "UpdateOnlyRecord",
                       "connectionName": "shared_commondataserviceforapps"
                     }
+                  },
+                  "metadata": {
+                    "operationMetadataId": "ddb10569-8edd-4b88-a279-f963dd1719db"
                   }
                 }
-              },
-              "runAfter": {
-                "Do_until": [
-                  "Succeeded"
-                ]
               },
               "else": {
                 "actions": {
                   "Condition_2": {
+                    "type": "If",
+                    "expression": {
+                      "and": [
+                        {
+                          "equals": [
+                            "@outputs('Start_and_wait_for_an_approval')?['body/outcome']",
+                            "Reject"
+                          ]
+                        }
+                      ]
+                    },
                     "actions": {
                       "Update_a_row_2": {
                         "type": "OpenApiConnection",
@@ -500,66 +529,30 @@
                     },
                     "else": {
                       "actions": {}
-                    },
-                    "expression": {
-                      "and": [
-                        {
-                          "equals": [
-                            "@outputs('Start_and_wait_for_an_approval')?['body/outcome']",
-                            "Reject"
-                          ]
-                        }
-                      ]
-                    },
-                    "type": "If"
+                    }
                   }
                 }
               },
-              "expression": {
-                "and": [
-                  {
-                    "equals": [
-                      "@outputs('Start_and_wait_for_an_approval')?['body/outcome']",
-                      "Approve"
-                    ]
-                  }
+              "runAfter": {
+                "Do_until": [
+                  "Succeeded"
                 ]
-              },
-              "type": "If"
+              }
             }
+          },
+          "else": {
+            "actions": {}
           },
           "runAfter": {
             "Initialize_ApprovalComplete": [
               "Succeeded"
             ]
           },
-          "else": {
-            "actions": {}
-          },
-          "expression": {
-            "and": [
-              {
-                "equals": [
-                  "@triggerOutputs()?['body/dg_requesttype']",
-                  121790001
-                ]
-              }
-            ]
-          },
           "metadata": {
             "operationMetadataId": "f1ce206a-62c4-4c0f-9049-20d8dfa81975"
-          },
-          "type": "If"
+          }
         },
         "Get_User_FullName": {
-          "runAfter": {
-            "Get_RequestType": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "5c4bbfcf-5011-44be-ba78-482f3c5d0e7c"
-          },
           "type": "OpenApiConnection",
           "inputs": {
             "parameters": {
@@ -571,13 +564,17 @@
               "operationId": "GetItem",
               "connectionName": "shared_commondataserviceforapps"
             }
+          },
+          "runAfter": {
+            "Get_RequestType": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5c4bbfcf-5011-44be-ba78-482f3c5d0e7c"
           }
         },
         "Get_RequestType": {
-          "runAfter": {},
-          "metadata": {
-            "operationMetadataId": "1263cbe9-685f-4a20-9be0-6b4a54ad077a"
-          },
           "type": "OpenApiConnection",
           "inputs": {
             "parameters": {
@@ -589,17 +586,13 @@
               "operationId": "GetItem",
               "connectionName": "shared_commondataserviceforapps"
             }
+          },
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "1263cbe9-685f-4a20-9be0-6b4a54ad077a"
           }
         },
         "Initialize_varCurrentApproverId": {
-          "runAfter": {
-            "Get_User_FullName": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "12b68e73-b26d-4bea-acd0-abf49ff2801b"
-          },
           "type": "InitializeVariable",
           "inputs": {
             "variables": [
@@ -608,17 +601,17 @@
                 "type": "string"
               }
             ]
-          }
-        },
-        "Initialize_ApprovalComplete": {
+          },
           "runAfter": {
-            "Initialize_varCurrentApproverId": [
+            "Get_User_FullName": [
               "Succeeded"
             ]
           },
           "metadata": {
-            "operationMetadataId": "80e25e19-6bb9-4c33-9021-ff914a83dd27"
-          },
+            "operationMetadataId": "12b68e73-b26d-4bea-acd0-abf49ff2801b"
+          }
+        },
+        "Initialize_ApprovalComplete": {
           "type": "InitializeVariable",
           "inputs": {
             "variables": [
@@ -628,6 +621,14 @@
                 "value": false
               }
             ]
+          },
+          "runAfter": {
+            "Initialize_varCurrentApproverId": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "80e25e19-6bb9-4c33-9021-ff914a83dd27"
           }
         }
       },

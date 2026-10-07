@@ -11,6 +11,35 @@
       <grid name="resultset" jump="dg_newcolumn" select="1" icon="1" preview="1">
         <row name="result" id="dg_ticketsid">
           <cell name="dg_newcolumn" width="300" />
+          <cell name="dg_jobnumber" width="109" />
+          <cell name="dg_jobtype" width="107" />
+          <cell name="dg_systemaccessrequest" width="173" />
+          <cell name="dg_incident" width="100" />
+          <cell name="dg_systemaccessincident" width="174" />
+          <cell name="dg_systemchanges" width="133" />
+          <cell name="dg_ticketstatus" width="113" />
+          <cell name="dg_ticketnumber" width="125" />
+          <cell name="dg_tickedloggedby" width="138" />
+          <cell name="dg_supportstaff" width="115" />
+          <cell name="dg_screenshotorsupportingdocument" width="245" />
+          <cell name="dg_resolution" width="101" />
+          <cell name="dg_requesteremail" width="133" />
+          <cell name="dg_requesttype" width="117" />
+          <cell name="dg_priority" width="100" />
+          <cell name="dg_peripheralrequest" width="147" />
+          <cell name="dg_peripheralincident" width="147" />
+          <cell name="dg_infrastructurechanges" width="168" />
+          <cell name="dg_justificationforchangerequest" width="224" />
+          <cell name="dg_impact" width="100" />
+          <cell name="dg_hardwarechanges" width="147" />
+          <cell name="dg_description" width="106" />
+          <cell name="dg_department" width="107" />
+          <cell name="dg_currentapprover" width="140" />
+          <cell name="dg_changetype" width="115" />
+          <cell name="dg_changerequesttype" width="163" />
+          <cell name="dg_approvalsstatus" width="137" />
+          <cell name="dg_businesslisence" width="137" />
+          <cell name="dg_approvalstatus" width="131" />
         </row>
       </grid>
     </layoutxml>
@@ -25,6 +54,35 @@
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
+          <attribute name="dg_jobnumber" />
+          <attribute name="dg_jobtype" />
+          <attribute name="dg_systemaccessrequest" />
+          <attribute name="dg_incident" />
+          <attribute name="dg_systemaccessincident" />
+          <attribute name="dg_systemchanges" />
+          <attribute name="dg_ticketstatus" />
+          <attribute name="dg_ticketnumber" />
+          <attribute name="dg_tickedloggedby" />
+          <attribute name="dg_supportstaff" />
+          <attribute name="dg_screenshotorsupportingdocument" />
+          <attribute name="dg_resolution" />
+          <attribute name="dg_requesteremail" />
+          <attribute name="dg_requesttype" />
+          <attribute name="dg_priority" />
+          <attribute name="dg_peripheralrequest" />
+          <attribute name="dg_peripheralincident" />
+          <attribute name="dg_infrastructurechanges" />
+          <attribute name="dg_justificationforchangerequest" />
+          <attribute name="dg_impact" />
+          <attribute name="dg_hardwarechanges" />
+          <attribute name="dg_description" />
+          <attribute name="dg_department" />
+          <attribute name="dg_currentapprover" />
+          <attribute name="dg_changetype" />
+          <attribute name="dg_changerequesttype" />
+          <attribute name="dg_approvalsstatus" />
+          <attribute name="dg_businesslisence" />
+          <attribute name="dg_approvalstatus" />
         </entity>
       </fetch>
     </fetchxml>

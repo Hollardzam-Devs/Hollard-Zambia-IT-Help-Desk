@@ -35,6 +35,238 @@
                         <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
                       </cell>
                     </row>
+                    <row>
+                      <cell id="{4ac902dc-5def-428f-8c95-35f1a9653323}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Job Number" languagecode="1033" />
+                        </labels>
+                        <control id="dg_jobnumber" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="dg_jobnumber" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{df742c4a-38cd-4875-bcb9-feece6ddf976}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Ticket Type" languagecode="1033" />
+                        </labels>
+                        <control id="dg_jobtype" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="dg_jobtype" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{22fdf418-6663-4055-8703-3814e2daddea}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="System Access Request" languagecode="1033" />
+                        </labels>
+                        <control id="dg_systemaccessrequest" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="dg_systemaccessrequest" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{8866ba61-ca7c-4469-bce9-53b72644af69}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Incident" languagecode="1033" />
+                        </labels>
+                        <control id="dg_incident" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="dg_incident" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{8f74bd7d-86ac-48ac-b25c-72aca4026117}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="System Access Incident" languagecode="1033" />
+                        </labels>
+                        <control id="dg_systemaccessincident" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="dg_systemaccessincident" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7b1ddb38-40d8-4231-9dac-533cd392f056}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="System Changes" languagecode="1033" />
+                        </labels>
+                        <control id="dg_systemchanges" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="dg_systemchanges" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ba8429be-f3e7-482f-bf00-85ed2ff61c5f}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Ticket Status" languagecode="1033" />
+                        </labels>
+                        <control id="dg_ticketstatus" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="dg_ticketstatus" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0816abf5-ee7c-429a-a3be-0b53058f8689}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Ticket Number" languagecode="1033" />
+                        </labels>
+                        <control id="dg_ticketnumber" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="dg_ticketnumber" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2c46a91b-52f0-408a-9cf0-c4a3ba9ecf01}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Ticked logged by" languagecode="1033" />
+                        </labels>
+                        <control id="dg_tickedloggedby" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="dg_tickedloggedby" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0f679506-3cbc-4c67-b554-84a40417be9b}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Support Staff" languagecode="1033" />
+                        </labels>
+                        <control id="dg_supportstaff" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="dg_supportstaff" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{03b79f33-4c87-4370-b144-a606903b896d}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Screenshot or Supporting Document" languagecode="1033" />
+                        </labels>
+                        <control id="dg_screenshotorsupportingdocument" classid="{0A7FF475-B016-4687-9CE5-042BFDBD6519}" datafieldname="dg_screenshotorsupportingdocument" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e19ed4ec-a545-4bbc-9631-66bf5d434ff1}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Resolution" languagecode="1033" />
+                        </labels>
+                        <control id="dg_resolution" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="dg_resolution" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{907ea7d4-928f-4d21-9f37-f6514d084a4e}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Requester Email" languagecode="1033" />
+                        </labels>
+                        <control id="dg_requesteremail" classid="{ADA2203E-B4CD-49BE-9DDF-234642B43B52}" datafieldname="dg_requesteremail" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{17f65c1b-c745-42ef-bed9-9e78d598bd6e}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Request Type" languagecode="1033" />
+                        </labels>
+                        <control id="dg_requesttype" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="dg_requesttype" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6c873808-3379-4319-b77b-9779bde2bf5e}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Priority" languagecode="1033" />
+                        </labels>
+                        <control id="dg_priority" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="dg_priority" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e2f795fc-5551-45dc-93a5-9a42cc0d0c2d}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Peripheral Request" languagecode="1033" />
+                        </labels>
+                        <control id="dg_peripheralrequest" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="dg_peripheralrequest" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e8e95108-c2f3-49dc-a326-63aa3df8e5f3}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Peripheral Incident" languagecode="1033" />
+                        </labels>
+                        <control id="dg_peripheralincident" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="dg_peripheralincident" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b7a40867-2c98-4697-a61c-eac0e3f5dd3e}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Infrastructure Changes" languagecode="1033" />
+                        </labels>
+                        <control id="dg_infrastructurechanges" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="dg_infrastructurechanges" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1ad43762-2582-4f1d-868e-4a1f99f5ce69}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Justification for Change Request" languagecode="1033" />
+                        </labels>
+                        <control id="dg_justificationforchangerequest" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="dg_justificationforchangerequest" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e2dbcd54-8436-4494-b153-5a4a246e3c4d}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Impact" languagecode="1033" />
+                        </labels>
+                        <control id="dg_impact" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="dg_impact" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6cbe85ae-de0a-4454-90af-b7fce1e2d638}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Hardware Changes" languagecode="1033" />
+                        </labels>
+                        <control id="dg_hardwarechanges" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="dg_hardwarechanges" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{cae68584-40f9-478c-b960-0c8df530eb16}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Description" languagecode="1033" />
+                        </labels>
+                        <control id="dg_description" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="dg_description" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{51881104-2a51-437e-95e1-97d9d47c9c1a}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Department" languagecode="1033" />
+                        </labels>
+                        <control id="dg_department" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="dg_department" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{503bd4b6-89c7-4374-9de1-b4a5ae4c2285}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Current Approver" languagecode="1033" />
+                        </labels>
+                        <control id="dg_currentapprover" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="dg_currentapprover" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c8d4f014-d653-4c3b-8cd9-585ff483ff0f}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Change Type" languagecode="1033" />
+                        </labels>
+                        <control id="dg_changetype" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="dg_changetype" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d9eda5f0-d9aa-4b78-9f96-03b03b067edc}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Change Request Type" languagecode="1033" />
+                        </labels>
+                        <control id="dg_changerequesttype" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="dg_changerequesttype" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2c97eb34-45f8-4797-bd2d-eaf87685d2cc}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Approvals Status" languagecode="1033" />
+                        </labels>
+                        <control id="dg_approvalsstatus" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="dg_approvalsstatus" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2030c99c-f26e-4bd6-aeac-cc36d425a570}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Business Lisence" languagecode="1033" />
+                        </labels>
+                        <control id="dg_businesslisence" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="dg_businesslisence" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{19a9e39b-ddee-4e8a-aff5-55949ac26fd4}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Approval Status" languagecode="1033" />
+                        </labels>
+                        <control id="dg_approvalstatus" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="dg_approvalstatus" disabled="false" />
+                      </cell>
+                    </row>
                   </rows>
                 </section>
               </sections>
@@ -42,6 +274,51 @@
           </columns>
         </tab>
       </tabs>
+      <header id="{c955274c-1ff7-46ff-a32b-9d2a83770364}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{145f7c59-b772-47cd-aae9-aebb2fb596c5}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{79f04b32-722a-4073-9c66-375f3587c483}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{a31f28e8-1cb4-49da-ac38-da81d854a76a}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{cef76fc9-70d7-4ad5-919d-7b11964c5a08}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{13bb46ea-a4ae-47bd-ac78-1b310bcdfb37}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{62bf8796-0cf9-482c-894c-15ad7e984cc5}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{be2bfd94-78af-438b-9c60-6669197cdd8c}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>
