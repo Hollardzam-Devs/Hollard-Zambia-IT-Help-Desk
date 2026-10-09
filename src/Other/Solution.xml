@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.2.26091.158" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.26091.158" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.26091.00158">
+<ImportExportXml version="9.2.26091.158" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.26091.158" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.26092.00156">
   <SolutionManifest>
     <UniqueName>HollardZambiaITHelpDesk</UniqueName>
     <LocalizedNames>
@@ -85,6 +85,9 @@
       <RootComponent type="1" schemaName="dg_tickets" behavior="0" />
       <RootComponent type="1" schemaName="dg_userroles" behavior="0" />
       <RootComponent type="1" schemaName="systemuser" behavior="1" />
+      <RootComponent type="20" id="{364e0453-e0bc-f111-aaaf-70a8a580e941}" behavior="0" />
+      <RootComponent type="20" id="{e63f7adb-67bd-f111-aaaf-70a8a580e941}" behavior="0" />
+      <RootComponent type="20" id="{fc50aa12-6abd-f111-aaaf-70a8a580e941}" behavior="0" />
       <RootComponent type="29" id="{559eb5cd-e08c-f111-8076-70a8a580e941}" behavior="0" />
       <RootComponent type="29" id="{7242f69d-1588-f111-ab0f-70a8a580e941}" behavior="0" />
       <RootComponent type="29" id="{8a54ddf6-9f86-f111-ab0e-70a8a580e941}" behavior="0" />
@@ -119,6 +122,10 @@
           <package appName="msdyn_FlowApprovals" version="2.2.17.0">msdyn_FlowApprovals (2.2.17.0)</package>
         </Required>
         <Dependent type="2" schemaName="dg_priority" displayName="Priority" parentSchemaName="dg_tickets" parentDisplayName="Tickets" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="new_sharedoffice365_2ea9f" solution="Active" id.connectionreferencelogicalname="new_sharedoffice365_2ea9f" />
+        <Dependent type="29" displayName="ITHelpDesk-Download Excel Report" id="{8a54ddf6-9f86-f111-ab0e-70a8a580e941}" />
       </MissingDependency>
     </MissingDependencies>
   </SolutionManifest>

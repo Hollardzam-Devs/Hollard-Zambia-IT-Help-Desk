@@ -2,31 +2,40 @@
   "properties": {
     "connectionReferences": {
       "shared_commondataserviceforapps": {
-        "runtimeSource": "embedded",
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        },
         "connection": {
           "connectionReferenceLogicalName": "dg_sharedcommondataserviceforapps_ddd85"
         },
-        "api": {
-          "name": "shared_commondataserviceforapps"
-        }
+        "runtimeSource": "embedded"
       },
       "shared_sharepointonline": {
-        "runtimeSource": "invoker",
+        "api": {
+          "name": "shared_sharepointonline"
+        },
         "connection": {
           "connectionReferenceLogicalName": "dg_sharedsharepointonline_f5459"
         },
-        "api": {
-          "name": "shared_sharepointonline"
-        }
+        "runtimeSource": "invoker"
       },
       "shared_excelonlinebusiness": {
-        "runtimeSource": "invoker",
+        "api": {
+          "name": "shared_excelonlinebusiness"
+        },
         "connection": {
           "connectionReferenceLogicalName": "dg_sharedexcelonlinebusiness_b2536"
         },
+        "runtimeSource": "invoker"
+      },
+      "shared_office365": {
         "api": {
-          "name": "shared_excelonlinebusiness"
-        }
+          "name": "shared_office365"
+        },
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedoffice365_2ea9f"
+        },
+        "runtimeSource": "invoker"
       }
     },
     "definition": {
@@ -44,9 +53,6 @@
       },
       "triggers": {
         "manual": {
-          "metadata": {
-            "operationMetadataId": "2c13795e-c50f-436a-b83f-a47758558fc1"
-          },
           "type": "Request",
           "kind": "PowerAppV2",
           "inputs": {
@@ -81,12 +87,12 @@
                   "description": "Please enter your input",
                   "x-ms-content-hint": "TEXT"
                 },
-                "text_4": {
-                  "title": "Priority",
-                  "type": "string",
-                  "x-ms-dynamically-added": true,
+                "text_5": {
                   "description": "Please enter your input",
-                  "x-ms-content-hint": "TEXT"
+                  "title": "email",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
                 }
               },
               "required": [
@@ -94,18 +100,17 @@
                 "text_1",
                 "text_2",
                 "text_3",
-                "text_4"
+                "text_5"
               ]
             }
+          },
+          "metadata": {
+            "operationMetadataId": "2c13795e-c50f-436a-b83f-a47758558fc1"
           }
         }
       },
       "actions": {
         "List_rows": {
-          "runAfter": {},
-          "metadata": {
-            "operationMetadataId": "9dc720a3-fa3d-4daf-ac0e-4cd3be25b79b"
-          },
           "type": "OpenApiConnection",
           "inputs": {
             "parameters": {
@@ -117,17 +122,13 @@
               "operationId": "ListRecords",
               "connectionName": "shared_commondataserviceforapps"
             }
+          },
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "9dc720a3-fa3d-4daf-ac0e-4cd3be25b79b"
           }
         },
         "Get_file_content_using_path": {
-          "runAfter": {
-            "List_rows": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "d6820ecd-0f48-46fd-a46f-9964af4cce41"
-          },
           "type": "OpenApiConnection",
           "inputs": {
             "parameters": {
@@ -140,17 +141,17 @@
               "operationId": "GetFileContentByPath",
               "connectionName": "shared_sharepointonline"
             }
-          }
-        },
-        "Create_file": {
+          },
           "runAfter": {
-            "Get_file_content_using_path": [
+            "List_rows": [
               "Succeeded"
             ]
           },
           "metadata": {
-            "operationMetadataId": "81ce27e7-cab8-42dc-afac-7158153e4825"
-          },
+            "operationMetadataId": "d6820ecd-0f48-46fd-a46f-9964af4cce41"
+          }
+        },
+        "Create_file": {
           "type": "OpenApiConnection",
           "inputs": {
             "parameters": {
@@ -165,35 +166,123 @@
               "connectionName": "shared_sharepointonline"
             }
           },
+          "runAfter": {
+            "Get_file_content_using_path": [
+              "Succeeded"
+            ]
+          },
           "runtimeConfiguration": {
             "contentTransfer": {
               "transferMode": "Chunked"
             }
+          },
+          "metadata": {
+            "operationMetadataId": "81ce27e7-cab8-42dc-afac-7158153e4825"
           }
         },
         "Apply_to_each": {
+          "type": "Foreach",
           "foreach": "@outputs('List_rows')?['body/value']",
           "actions": {
-            "Add_a_row_into_a_table": {
-              "type": "OpenApiConnection",
-              "inputs": {
-                "parameters": {
-                  "source": "sites/hollardzam.sharepoint.com,3469e2bc-e158-4eeb-bdf6-610c0da1ca8b,b987562f-21a0-47bb-bf57-150e52ba8eb8",
-                  "drive": "b!vOJpNFjh60699mEMDaHKiy9Wh7mgIbtHv1cVDlK6jrjJNTt7pYcCQrFm13xJsy_2",
-                  "file": "@outputs('Create_file')?['body/Id']",
-                  "table": "Tickets",
-                  "item": {
-                    "TicketID": "@{items('Apply_to_each')?['dg_ticketnumber']}",
-                    "Title": "@{items('Apply_to_each')?['dg_title']}",
-                    "Description": "@{items('Apply_to_each')?['dg_description']}",
-                    "RequestType": "@{if(equals(items('Apply_to_each')?['dg_jobtype'], 121790000), items('Apply_to_each')?['dg_requesttype@OData.Community.Display.V1.FormattedValue'], items('Apply_to_each')?['dg_incident@OData.Community.Display.V1.FormattedValue'])}",
-                    "CreatedOn": "@{items('Apply_to_each')?['createdon']}"
+            "Condition": {
+              "type": "If",
+              "expression": {
+                "and": [
+                  {
+                    "equals": [
+                      "@empty(items('Apply_to_each')?['_dg_supportstaff_value'])",
+                      true
+                    ]
                   }
-                },
-                "host": {
-                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness",
-                  "operationId": "AddRowV2",
-                  "connectionName": "shared_excelonlinebusiness"
+                ]
+              },
+              "actions": {
+                "Add_a_row_into_a_table_1": {
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "parameters": {
+                      "source": "sites/hollardzam.sharepoint.com,3469e2bc-e158-4eeb-bdf6-610c0da1ca8b,b987562f-21a0-47bb-bf57-150e52ba8eb8",
+                      "drive": "b!vOJpNFjh60699mEMDaHKiy9Wh7mgIbtHv1cVDlK6jrjJNTt7pYcCQrFm13xJsy_2",
+                      "file": "@outputs('Create_file')?['body/Id']",
+                      "table": "Tickets",
+                      "item": {
+                        "TicketID": "@{items('Apply_to_each')?['dg_ticketnumber']}",
+                        "Title": "@{items('Apply_to_each')?['dg_title']}",
+                        "Description": "@{items('Apply_to_each')?['dg_description']}",
+                        "RequestType": "@{if(equals(items('Apply_to_each')?['dg_jobtype'], 121790000), items('Apply_to_each')?['dg_requesttype@OData.Community.Display.V1.FormattedValue'], items('Apply_to_each')?['dg_incident@OData.Community.Display.V1.FormattedValue'])}",
+                        "CreatedOn": "@{items('Apply_to_each')?['createdon']}",
+                        "Status": "@{items('Apply_to_each')?['dg_ticketstatus@OData.Community.Display.V1.FormattedValue']}",
+                        "Priority": "@{items('Apply_to_each')?['dg_priority@OData.Community.Display.V1.FormattedValue']}",
+                        "Category": "@{items('Apply_to_each')?['dg_jobtype@OData.Community.Display.V1.FormattedValue']}",
+                        "AssignedTo": "Unassigned",
+                        "Ässigned": ""
+                      }
+                    },
+                    "host": {
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness",
+                      "operationId": "AddRowV2",
+                      "connectionName": "shared_excelonlinebusiness"
+                    }
+                  },
+                  "metadata": {
+                    "operationMetadataId": "3f26ebff-5bb9-4265-9003-c650aa2b665d",
+                    "tableId": "Tickets"
+                  }
+                }
+              },
+              "else": {
+                "actions": {
+                  "Get_a_row_by_ID": {
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "parameters": {
+                        "entityName": "dg_supportstaffs",
+                        "recordId": "@items('Apply_to_each')?['_dg_supportstaff_value']"
+                      },
+                      "host": {
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                        "operationId": "GetItem",
+                        "connectionName": "shared_commondataserviceforapps"
+                      }
+                    }
+                  },
+                  "Add_a_row_into_a_table": {
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "parameters": {
+                        "source": "sites/hollardzam.sharepoint.com,3469e2bc-e158-4eeb-bdf6-610c0da1ca8b,b987562f-21a0-47bb-bf57-150e52ba8eb8",
+                        "drive": "b!vOJpNFjh60699mEMDaHKiy9Wh7mgIbtHv1cVDlK6jrjJNTt7pYcCQrFm13xJsy_2",
+                        "file": "@outputs('Create_file')?['body/Id']",
+                        "table": "Tickets",
+                        "item": {
+                          "TicketID": "@{items('Apply_to_each')?['dg_ticketnumber']}",
+                          "Title": "@{items('Apply_to_each')?['dg_title']}",
+                          "Description": "@{items('Apply_to_each')?['dg_description']}",
+                          "RequestType": "@{if(equals(items('Apply_to_each')?['dg_jobtype'], 121790000), items('Apply_to_each')?['dg_requesttype@OData.Community.Display.V1.FormattedValue'], items('Apply_to_each')?['dg_incident@OData.Community.Display.V1.FormattedValue'])}",
+                          "CreatedOn": "@{items('Apply_to_each')?['createdon']}",
+                          "Status": "@{items('Apply_to_each')?['dg_ticketstatus@OData.Community.Display.V1.FormattedValue']}",
+                          "Priority": "@{items('Apply_to_each')?['dg_priority@OData.Community.Display.V1.FormattedValue']}",
+                          "Category": "@{items('Apply_to_each')?['dg_jobtype@OData.Community.Display.V1.FormattedValue']}",
+                          "AssignedTo": "@{outputs('Get_a_row_by_ID')?['body/dg_fullname']}",
+                          "Ässigned": ""
+                        }
+                      },
+                      "host": {
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness",
+                        "operationId": "AddRowV2",
+                        "connectionName": "shared_excelonlinebusiness"
+                      }
+                    },
+                    "runAfter": {
+                      "Get_a_row_by_ID": [
+                        "Succeeded"
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "3f26ebff-5bb9-4265-9003-c650aa2b665d",
+                      "tableId": "Tickets"
+                    }
+                  }
                 }
               }
             }
@@ -203,7 +292,30 @@
               "Succeeded"
             ]
           },
-          "type": "Foreach"
+          "metadata": {
+            "operationMetadataId": "1c48f796-fd09-45f9-a98d-cc8f7f2dc3f4"
+          }
+        },
+        "Send_an_email_(V2)": {
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "emailMessage/To": "@triggerBody()?['text_5']",
+              "emailMessage/Subject": "IT Help Desk Report Generated",
+              "emailMessage/Body": "<p class=\"editor-paragraph\">@{concat(\r\n    'https://hollardzam.sharepoint.com/sites/HollardITHelpDesk',\r\n    replace(\r\n        outputs('Create_file')?['body/Path'],\r\n        ' ',\r\n        '%20'\r\n    )\r\n)}</p>",
+              "emailMessage/Importance": "Normal"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+              "operationId": "SendEmailV2",
+              "connectionName": "shared_office365"
+            }
+          },
+          "runAfter": {
+            "Apply_to_each": [
+              "Succeeded"
+            ]
+          }
         }
       },
       "outputs": {}
