@@ -1,0 +1,364 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "dg_sharedcommondataserviceforapps_ddd85"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "dg_tickets",
+              "subscriptionRequest/scope": 4
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "connectionName": "shared_commondataserviceforapps"
+            }
+          }
+        }
+      },
+      "actions": {
+        "Switch_Job_Type": {
+          "runAfter": {},
+          "cases": {
+            "Case_is_Request": {
+              "case": 121790000,
+              "actions": {
+                "Switch_Request_Type": {
+                  "cases": {
+                    "Peripheral_Request": {
+                      "case": 121790000,
+                      "actions": {
+                        "Compose": {
+                          "type": "Compose",
+                          "inputs": "@concat(\r\n'PHR-',\r\nreplace(\r\ntriggerOutputs()?['body/dg_ticketnumber'],\r\n'IHD-',\r\n''\r\n)\r\n)"
+                        },
+                        "Update_a_row": {
+                          "runAfter": {
+                            "Compose": [
+                              "Succeeded"
+                            ]
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "parameters": {
+                              "entityName": "dg_ticketses",
+                              "recordId": "@triggerOutputs()?['body/dg_ticketsid']",
+                              "item/dg_jobnumber": "@outputs('Compose')"
+                            },
+                            "host": {
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                              "operationId": "UpdateOnlyRecord",
+                              "connectionName": "shared_commondataserviceforapps"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "System_Access_Request": {
+                      "case": 121790001,
+                      "actions": {
+                        "Switch": {
+                          "cases": {
+                            "Access": {
+                              "case": 121790000,
+                              "actions": {
+                                "Compose_1": {
+                                  "type": "Compose",
+                                  "inputs": "@concat(\r\n'SAR-',\r\nreplace(\r\ntriggerOutputs()?['body/dg_ticketnumber'],\r\n'IHD-',\r\n''\r\n)\r\n)"
+                                },
+                                "Update_a_row_1": {
+                                  "runAfter": {
+                                    "Compose_1": [
+                                      "Succeeded"
+                                    ]
+                                  },
+                                  "type": "OpenApiConnection",
+                                  "inputs": {
+                                    "parameters": {
+                                      "entityName": "dg_ticketses",
+                                      "recordId": "@triggerOutputs()?['body/dg_ticketsid']",
+                                      "item/dg_jobnumber": "@outputs('Compose_1')"
+                                    },
+                                    "host": {
+                                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                                      "operationId": "UpdateOnlyRecord",
+                                      "connectionName": "shared_commondataserviceforapps"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "Change": {
+                              "case": 121790001,
+                              "actions": {
+                                "Compose_4": {
+                                  "type": "Compose",
+                                  "inputs": "@concat(\r\n'CHR-',\r\nreplace(\r\ntriggerOutputs()?['body/dg_ticketnumber'],\r\n'IHD-',\r\n''\r\n)\r\n)"
+                                },
+                                "Update_a_row_4": {
+                                  "runAfter": {
+                                    "Compose_4": [
+                                      "Succeeded"
+                                    ]
+                                  },
+                                  "type": "OpenApiConnection",
+                                  "inputs": {
+                                    "parameters": {
+                                      "entityName": "dg_ticketses",
+                                      "recordId": "@triggerOutputs()?['body/dg_ticketsid']",
+                                      "item/dg_jobnumber": "@outputs('Compose_4')"
+                                    },
+                                    "host": {
+                                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                                      "operationId": "UpdateOnlyRecord",
+                                      "connectionName": "shared_commondataserviceforapps"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "default": {
+                            "actions": {}
+                          },
+                          "expression": "@triggerOutputs()?['body/dg_accessaction']",
+                          "type": "Switch"
+                        }
+                      }
+                    },
+                    "Access_Control_Request": {
+                      "case": 121790002,
+                      "actions": {
+                        "Compose_2": {
+                          "type": "Compose",
+                          "inputs": "@concat(\r\n'ACR-',\r\nreplace(\r\ntriggerOutputs()?['body/dg_ticketnumber'],\r\n'IHD-',\r\n''\r\n)\r\n)"
+                        },
+                        "Update_a_row_2": {
+                          "runAfter": {
+                            "Compose_2": [
+                              "Succeeded"
+                            ]
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "parameters": {
+                              "entityName": "dg_ticketses",
+                              "recordId": "@triggerOutputs()?['body/dg_ticketsid']",
+                              "item/dg_jobnumber": "@outputs('Compose_2')"
+                            },
+                            "host": {
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                              "operationId": "UpdateOnlyRecord",
+                              "connectionName": "shared_commondataserviceforapps"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "System_Change_Request": {
+                      "case": 121790003,
+                      "actions": {
+                        "Compose_3": {
+                          "type": "Compose",
+                          "inputs": "@concat(\r\n'SCR-',\r\nreplace(\r\ntriggerOutputs()?['body/dg_ticketnumber'],\r\n'IHD-',\r\n''\r\n)\r\n)"
+                        },
+                        "Update_a_row_3": {
+                          "runAfter": {
+                            "Compose_3": [
+                              "Succeeded"
+                            ]
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "parameters": {
+                              "entityName": "dg_ticketses",
+                              "recordId": "@triggerOutputs()?['body/dg_ticketsid']",
+                              "item/dg_jobnumber": "@outputs('Compose_3')"
+                            },
+                            "host": {
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                              "operationId": "UpdateOnlyRecord",
+                              "connectionName": "shared_commondataserviceforapps"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "default": {
+                    "actions": {}
+                  },
+                  "expression": "@triggerOutputs()?['body/dg_requesttype']",
+                  "type": "Switch"
+                }
+              }
+            },
+            "Case_is_Incident": {
+              "case": 121790001,
+              "actions": {
+                "Switch_1": {
+                  "cases": {
+                    "Peripheral_Incident": {
+                      "case": 121790000,
+                      "actions": {
+                        "Compose_5": {
+                          "type": "Compose",
+                          "inputs": "@concat(\r\n'PHI-',\r\nreplace(\r\ntriggerOutputs()?['body/dg_ticketnumber'],\r\n'IHD-',\r\n''\r\n)\r\n)"
+                        },
+                        "Update_a_row_5": {
+                          "runAfter": {
+                            "Compose_5": [
+                              "Succeeded"
+                            ]
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "parameters": {
+                              "entityName": "dg_ticketses",
+                              "recordId": "@triggerOutputs()?['body/dg_ticketsid']",
+                              "item/dg_jobnumber": "@outputs('Compose_5')"
+                            },
+                            "host": {
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                              "operationId": "UpdateOnlyRecord",
+                              "connectionName": "shared_commondataserviceforapps"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "System_Access_Incident": {
+                      "case": 121790001,
+                      "actions": {
+                        "Compose_6": {
+                          "type": "Compose",
+                          "inputs": "@concat(\r\n'SAI-',\r\nreplace(\r\ntriggerOutputs()?['body/dg_ticketnumber'],\r\n'IHD-',\r\n''\r\n)\r\n)"
+                        },
+                        "Update_a_row_6": {
+                          "runAfter": {
+                            "Compose_6": [
+                              "Succeeded"
+                            ]
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "parameters": {
+                              "entityName": "dg_ticketses",
+                              "recordId": "@triggerOutputs()?['body/dg_ticketsid']",
+                              "item/dg_jobnumber": "@outputs('Compose_6')"
+                            },
+                            "host": {
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                              "operationId": "UpdateOnlyRecord",
+                              "connectionName": "shared_commondataserviceforapps"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Access_Control_Incident": {
+                      "case": 121790002,
+                      "actions": {
+                        "Compose_7": {
+                          "type": "Compose",
+                          "inputs": "@concat(\r\n'ACI-',\r\nreplace(\r\ntriggerOutputs()?['body/dg_ticketnumber'],\r\n'IHD-',\r\n''\r\n)\r\n)"
+                        },
+                        "Update_a_row_7": {
+                          "runAfter": {
+                            "Compose_7": [
+                              "Succeeded"
+                            ]
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "parameters": {
+                              "entityName": "dg_ticketses",
+                              "recordId": "@triggerOutputs()?['body/dg_ticketsid']",
+                              "item/dg_jobnumber": "@outputs('Compose_7')"
+                            },
+                            "host": {
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                              "operationId": "UpdateOnlyRecord",
+                              "connectionName": "shared_commondataserviceforapps"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Network_Incident": {
+                      "case": 121790003,
+                      "actions": {
+                        "Compose_8": {
+                          "type": "Compose",
+                          "inputs": "@concat(\r\n'NET-',\r\nreplace(\r\ntriggerOutputs()?['body/dg_ticketnumber'],\r\n'IHD-',\r\n''\r\n)\r\n)"
+                        },
+                        "Update_a_row_8": {
+                          "runAfter": {
+                            "Compose_8": [
+                              "Succeeded"
+                            ]
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "parameters": {
+                              "entityName": "dg_ticketses",
+                              "recordId": "@triggerOutputs()?['body/dg_ticketsid']",
+                              "item/dg_jobnumber": "@outputs('Compose_8')"
+                            },
+                            "host": {
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                              "operationId": "UpdateOnlyRecord",
+                              "connectionName": "shared_commondataserviceforapps"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "default": {
+                    "actions": {}
+                  },
+                  "expression": "@triggerOutputs()?['body/dg_incident']",
+                  "type": "Switch"
+                }
+              }
+            }
+          },
+          "default": {
+            "actions": {}
+          },
+          "expression": "@triggerOutputs()?['body/dg_jobtype']",
+          "type": "Switch"
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

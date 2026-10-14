@@ -1,0 +1,137 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "dg_sharedcommondataserviceforapps_ddd85"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_office365": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedoffice365_2ea9f"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "716c2d1c-3d80-4846-b7f0-6582ee0965c9"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "parameters": {
+              "subscriptionRequest/message": 3,
+              "subscriptionRequest/entityname": "dg_tickets",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "dg_ticketstatus"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "connectionName": "shared_commondataserviceforapps"
+            }
+          }
+        }
+      },
+      "actions": {
+        "Get_a_row_by_ID_-_Get_Ticket": {
+          "runAfter": {
+            "Compose": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "fdeee40c-a49e-40e5-908c-4361c33de0cd"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "entityName": "dg_ticketses",
+              "recordId": "@triggerOutputs()?['body/dg_ticketsid']"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "connectionName": "shared_commondataserviceforapps"
+            }
+          }
+        },
+        "Get_a_row_by_ID-Get_Created_By": {
+          "runAfter": {
+            "Get_a_row_by_ID_-_Get_Ticket": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "94eaba5f-dd97-4252-9dd6-d0a70b17d22d"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "entityName": "systemusers",
+              "recordId": "@outputs('Get_a_row_by_ID_-_Get_Ticket')?['body/_createdby_value']"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "connectionName": "shared_commondataserviceforapps"
+            }
+          }
+        },
+        "Compose": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "c71b668c-4ec3-44f3-8d80-92a7e0b3cbc0"
+          },
+          "type": "Compose",
+          "inputs": "@triggerOutputs()"
+        },
+        "Send_an_email_(V2)": {
+          "runAfter": {
+            "Get_a_row_by_ID-Get_Created_By": [
+              "Succeeded"
+            ]
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "emailMessage/To": "@outputs('Get_a_row_by_ID-Get_Created_By')?['body/internalemailaddress']",
+              "emailMessage/Subject": "IT Help Desk Ticket @{outputs('Get_a_row_by_ID_-_Get_Ticket')?['body/dg_jobnumber']} Status Update: @{outputs('Get_a_row_by_ID_-_Get_Ticket')?['body/dg_ticketstatus@OData.Community.Display.V1.FormattedValue']}",
+              "emailMessage/Body": "<p class=\"editor-paragraph\">Hello,<br><br>Your IT Help Desk ticket has been updated.<br><br><b><strong class=\"editor-text-bold\">Ticket Number</strong></b> : @{outputs('Get_a_row_by_ID_-_Get_Ticket')?['body/dg_jobnumber']}<br><b><strong class=\"editor-text-bold\">Title</strong></b> : @{outputs('Get_a_row_by_ID_-_Get_Ticket')?['body/dg_description']}<br><b><strong class=\"editor-text-bold\">Status</strong></b> : @{outputs('Get_a_row_by_ID_-_Get_Ticket')?['body/dg_ticketstatus@OData.Community.Display.V1.FormattedValue']}<br><b><strong class=\"editor-text-bold\">Last Updated</strong></b> : @{outputs('Get_a_row_by_ID_-_Get_Ticket')?['body/modifiedon']}<br><br>Your request is currently being attended to by the IT Help Desk team. We will continue working on your request and provide further updates as necessary.<br><br>If you have any additional information that may assist with resolving the issue, please contact the IT Help Desk.<br><br>Kind regards,<br>IT Help Desk<br>Hollard Insurance Zambia</p><br>",
+              "emailMessage/Importance": "Normal"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+              "operationId": "SendEmailV2",
+              "connectionName": "shared_office365"
+            }
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

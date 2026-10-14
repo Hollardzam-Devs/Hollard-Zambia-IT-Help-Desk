@@ -1,0 +1,138 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedcommondataserviceforapps_e1086"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_office365": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedoffice365_03d43"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "716c2d1c-3d80-4846-b7f0-6582ee0965c9"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "parameters": {
+              "subscriptionRequest/message": 3,
+              "subscriptionRequest/entityname": "dg_tickets",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "dg_jobnumber"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "connectionName": "shared_commondataserviceforapps"
+            }
+          }
+        }
+      },
+      "actions": {
+        "Get_a_row_by_ID_-_Get_Ticket": {
+          "runAfter": {
+            "Compose": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "fdeee40c-a49e-40e5-908c-4361c33de0cd"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "entityName": "dg_ticketses",
+              "recordId": "@triggerOutputs()?['body/dg_ticketsid']"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "connectionName": "shared_commondataserviceforapps"
+            }
+          }
+        },
+        "Get_a_row_by_ID-Get_Created_By": {
+          "runAfter": {
+            "Get_a_row_by_ID_-_Get_Ticket": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "94eaba5f-dd97-4252-9dd6-d0a70b17d22d"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "entityName": "systemusers",
+              "recordId": "@outputs('Get_a_row_by_ID_-_Get_Ticket')?['body/_createdby_value']"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "connectionName": "shared_commondataserviceforapps"
+            }
+          }
+        },
+        "Compose": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "c71b668c-4ec3-44f3-8d80-92a7e0b3cbc0"
+          },
+          "type": "Compose",
+          "inputs": "@triggerOutputs()"
+        },
+        "Send_an_email_(V2)": {
+          "runAfter": {
+            "Get_a_row_by_ID-Get_Created_By": [
+              "Succeeded"
+            ]
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "emailMessage/To": "@outputs('Get_a_row_by_ID-Get_Created_By')?['body/internalemailaddress']",
+              "emailMessage/Subject": "IT Help Desk Ticket @{outputs('Get_a_row_by_ID_-_Get_Ticket')?['body/dg_jobnumber']} - Received and Acknowledged ",
+              "emailMessage/Body": "<p class=\"editor-paragraph\">Hello @{outputs('Get_a_row_by_ID-Get_Created_By')?['body/fullname']}<br><br>Thank you for reaching out to the Hollard IT Help Desk. This confirms that your request has been logged successfully.<br><br><b><strong class=\"editor-text-bold\">Ticket Number</strong></b> : @{outputs('Get_a_row_by_ID_-_Get_Ticket')?['body/dg_jobnumber']}<br><b><strong class=\"editor-text-bold\">Title</strong></b> : @{outputs('Get_a_row_by_ID_-_Get_Ticket')?['body/dg_description']}<br><b><strong class=\"editor-text-bold\">Status</strong></b> : @{outputs('Get_a_row_by_ID_-_Get_Ticket')?['body/dg_ticketstatus@OData.Community.Display.V1.FormattedValue']}<br><b><strong class=\"editor-text-bold\">Date Logged</strong></b> : @{outputs('Get_a_row_by_ID_-_Get_Ticket')?['body/createdon']}<br></p><br><p class=\"editor-paragraph\"><b><strong class=\"editor-text-bold\">What happens next?</strong></b><br><br>Our IT Help Desk team will review your request and reach out if any further information is needed. You can expect an update in line with our standard service level targets.<br><br>Need to add more details?<br><br>If you have any additional information that could help us resolve this faster, screenshots, error messages, or steps to reproduce the issue, please reply to this email or contact the IT Help Desk directly, quoting your ticket number.<br><br>Please keep this ticket number for any future correspondence regarding this request.<br><br>Thank you for your patience.<br><br>Kind regards,<br>IT Help Desk<br>Hollard Insurance Zambia</p>",
+              "emailMessage/From": "Helpdesk@hollardzam.com",
+              "emailMessage/Importance": "Normal"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+              "operationId": "SendEmailV2",
+              "connectionName": "shared_office365"
+            }
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

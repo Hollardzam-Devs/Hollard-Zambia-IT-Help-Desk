@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.2.26091.158" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.26091.158" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.26092.00156">
+<ImportExportXml version="9.2.26092.157" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.26092.157" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.26092.00157">
   <SolutionManifest>
     <UniqueName>HollardZambiaITHelpDesk</UniqueName>
     <LocalizedNames>
       <LocalizedName description="Hollard Zambia IT Help Desk" languagecode="1033" />
     </LocalizedNames>
     <Descriptions />
-    <Version>1.0.0.6</Version>
+    <Version>1.0.0.10</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>Kama</UniqueName>
@@ -88,9 +88,15 @@
       <RootComponent type="20" id="{364e0453-e0bc-f111-aaaf-70a8a580e941}" behavior="0" />
       <RootComponent type="20" id="{e63f7adb-67bd-f111-aaaf-70a8a580e941}" behavior="0" />
       <RootComponent type="20" id="{fc50aa12-6abd-f111-aaaf-70a8a580e941}" behavior="0" />
+      <RootComponent type="29" id="{30949cc0-4492-f111-8075-70a8a580e941}" behavior="0" />
+      <RootComponent type="29" id="{4a78890b-6f9d-f111-b8dc-70a8a580e941}" behavior="0" />
       <RootComponent type="29" id="{559eb5cd-e08c-f111-8076-70a8a580e941}" behavior="0" />
       <RootComponent type="29" id="{7242f69d-1588-f111-ab0f-70a8a580e941}" behavior="0" />
       <RootComponent type="29" id="{8a54ddf6-9f86-f111-ab0e-70a8a580e941}" behavior="0" />
+      <RootComponent type="29" id="{9d58b016-6dbe-f111-aaaf-70a8a580e941}" behavior="0" />
+      <RootComponent type="29" id="{c37d2171-d7bc-f111-aaaf-70a8a580e941}" behavior="0" />
+      <RootComponent type="29" id="{d91d8ea2-ab90-f111-8076-70a8a580e941}" behavior="0" />
+      <RootComponent type="29" id="{de2605a3-70be-f111-aaaf-70a8a580e941}" behavior="0" />
       <RootComponent type="300" schemaName="dg_hollardzambiaithelpdesk_cb5f8" behavior="0" />
       <RootComponent type="9" schemaName="dg_accessaction" behavior="0" />
       <RootComponent type="9" schemaName="dg_approvalstatus" behavior="0" />
@@ -122,10 +128,6 @@
           <package appName="msdyn_FlowApprovals" version="2.2.17.0">msdyn_FlowApprovals (2.2.17.0)</package>
         </Required>
         <Dependent type="2" schemaName="dg_priority" displayName="Priority" parentSchemaName="dg_tickets" parentDisplayName="Tickets" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="connectionreference" displayName="new_sharedoffice365_2ea9f" solution="Active" id.connectionreferencelogicalname="new_sharedoffice365_2ea9f" />
-        <Dependent type="29" displayName="ITHelpDesk-Download Excel Report" id="{8a54ddf6-9f86-f111-ab0e-70a8a580e941}" />
       </MissingDependency>
     </MissingDependencies>
   </SolutionManifest>
